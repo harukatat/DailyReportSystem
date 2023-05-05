@@ -8,6 +8,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,6 +26,7 @@ public class Employee {
 
     /** 名前。20桁。null不許可 */
     @Column(length = 20, nullable = false)
+
     private String name;
 
     /** 削除フラグ*/
@@ -39,4 +41,7 @@ public class Employee {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updated_at;
 
+    /** 紐付け*/
+    @OneToOne(mappedBy="employee_id")
+    private Authentication authentication;
 }

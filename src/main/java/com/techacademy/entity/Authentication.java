@@ -1,14 +1,13 @@
 package com.techacademy.entity;
 
-import java.util.Date;
+import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
 import lombok.Data;
 
 @Data
@@ -18,6 +17,7 @@ public class Authentication {
 
     /** 社員番号。20桁。主キー。 */
 
+    @Id
     @Column(length = 20, nullable = false)
     private String code;
 
@@ -31,8 +31,9 @@ public class Authentication {
     private String role;
 
     /** 従業員テーブルのID。*/
-    @Column
-    private Integer id;
+    @OneToOne
+    @JoinColumn(name="employee_id", referencedColumnName="id")
+    private Employee employee_id;
 
 
 }
