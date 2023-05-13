@@ -1,0 +1,22 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>従業員情報</title>
+</head>
+<body>
+    <h1>従業員 詳細</h1>
+
+        <table border="1" style="border-collapse: collapse">
+        <tr><th>社員番号</th><td>[[${employee.authentication.code}]]</td></tr>
+        <tr><th>氏名</th><td>[[${employee.name}]]</td></tr>
+        <tr><th>権限</th><td>[[${employee.authentication.role}]]</td></tr>
+        <tr><th>登録日時</th><td>[[${employee.createdAt}]]</td></tr>
+        <tr><th>更新日時</th><td>[[${employee.updatedAt}]]</td></tr>
+
+        </table>
+        <a th:href="@{/employee/update/{id}/(id=${employee.id})}">この従業員情報を編集する</a>
+        <a th:href="@{/employee/list}">一覧に戻る</a>
+</body>
+</html>
+

@@ -15,6 +15,11 @@ import lombok.Data;
 @Table(name = "authentication")
 public class Authentication {
 
+    /** 権限用の列挙型＊/
+    public static enum Role {
+       管理者　一般
+    }
+
     /** 社員番号。20桁。主キー。 */
 
     @Id
@@ -33,7 +38,7 @@ public class Authentication {
     /** 従業員テーブルのID。*/
     @OneToOne
     @JoinColumn(name="employee_id", referencedColumnName="id")
-    private Employee employee_id;
+    private Employee employee;
 
 
 }

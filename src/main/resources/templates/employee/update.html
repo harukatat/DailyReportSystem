@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Lesson 35  last challenge</title>
+    <link rel="stylesheet" th:href="@{/css/user/update.css}">
+</head>
+<body>
+    <h1>User情報管理システム</h1>
+    <h2>User更新</h2>
+    <form method="post" th:action="@{/employee/update/{id}/(id=${employee.id})}" th:object="${employee}">
+        <label for="id">社員番号</label>
+        <input type="text" th:field="*{authotication.code}">>
+        <br>
+        <label for="name">氏名</label>
+        <input type="text" th:field="*{name}">
+        <br>
+        <label for="password">パスワード</label>
+        <input type="text" th:field="*{authoticatio.password}">
+        <br>
+        <label for="role">権限</role>
+        <select th:field="*{gender}">
+            <option value="" th:text="選択してください">
+            <option th:each="item:${T(com.techacademy.entity.User.Gender).values()}" th:value="${item}" th:text="${item}" th:selected="*{gender} == ${item}">
+        </select>
+
+        <input type="submit" value="投稿">
+
+    </form>
+    <a th:href="@{/employee/list}">この従業員情報を削除する</a>
+    <a th:href="@{/employee/list}">一覧に戻る</a>
+</body>
+</html>
