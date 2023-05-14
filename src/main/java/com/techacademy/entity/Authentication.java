@@ -3,6 +3,8 @@ package com.techacademy.entity;
 import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -15,9 +17,9 @@ import lombok.Data;
 @Table(name = "authentication")
 public class Authentication {
 
-    /** 権限用の列挙型＊/
+    /** 権限用の列挙型*/
     public static enum Role {
-       管理者　一般
+       管理者, 一般
     }
 
     /** 社員番号。20桁。主キー。 */
@@ -33,7 +35,8 @@ public class Authentication {
 
     /** 権限。10桁。*/
     @Column(length = 10, nullable = false)
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     /** 従業員テーブルのID。*/
     @OneToOne

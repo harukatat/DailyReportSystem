@@ -6,22 +6,26 @@
     <link rel="stylesheet" th:href="@{/css/employee/register.css}">
 </head>
 <body>
-    <h1>Employee情報管理システム</h1>
-    <h2>Employee登録</h2>
+    <h1>従業員　新規登録ページ</h1>
     <form method="post" th:action="@{/employee/register}" th:object="${employee}">
         <label for="employee.authentication.code">社員番号</label>
+        <br>
         <input type="text" th:field="*{authentication.code}">
         <br>
         <label for="employee.name">氏名</label>
+        <br>
         <input type="text" th:field="*{name}">
         <br>
 
         <label for="employee.authentication.password">パスワード</label>
+        <br>
         <input type="text" th:field="*{authentication.password}">
         <br>
-        <select th:field="*{authetication.role}">
+        <label for="authentication.role">役割</label>
+        <br>
+        <select th:field="*{authentication.role}">
             <option value="" th:text="選択してください">
-            <option th:each="item:${T(com.techacademy.entity.Employee.Role).values()}" th:value="${item}" th:text="${item}">
+            <option th:each="item:${T(com.techacademy.entity.Authentication.Role).values()}" th:value="${item}" th:text="${item}">
         </select>
         <br>
 

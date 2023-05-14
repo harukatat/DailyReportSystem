@@ -67,7 +67,7 @@ public class EmployeeController {
         return "employee/update";
     }
 
-    /** User更新処理 */
+    /** Controller更新処理 */
     @PostMapping("/update/{id}/")
     public String postEmployee(Employee employee) {
         // Employee登録
