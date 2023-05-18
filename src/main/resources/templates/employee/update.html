@@ -3,31 +3,36 @@
 <head>
     <meta charset="utf-8">
     <title>Lesson 35  last challenge</title>
-    <link rel="stylesheet" th:href="@{/css/user/update.css}">
+    <link rel="stylesheet" th:href="@{/css/employee/update.css}">
 </head>
 <body>
-    <h1>User情報管理システム</h1>
-    <h2>User更新</h2>
+    <h1>id:[[${employee.id}]]の従業員情報編集ページ</h1>
+    <h2>(パスワードは変更する場合のみ入力ください)</h2>
     <form method="post" th:action="@{/employee/update/{id}/(id=${employee.id})}" th:object="${employee}">
         <label for="id">社員番号</label>
-        <input type="text" th:field="*{authotication.code}">>
+        <br>
+        <input type="text" th:field="*{authentication.code}">>
         <br>
         <label for="name">氏名</label>
+        <br>
         <input type="text" th:field="*{name}">
         <br>
         <label for="password">パスワード</label>
-        <input type="text" th:field="*{authoticatio.password}">
         <br>
-        <label for="role">権限</role>
-        <select th:field="*{gender}">
+        <input type="password" id="authentication.password" name="authentication.password">
+        <br>
+        <label for="authentication.role">権限</role>
+        <br>
+        <select th:field="*{authentication.role}">
             <option value="" th:text="選択してください">
-            <option th:each="item:${T(com.techacademy.entity.User.Gender).values()}" th:value="${item}" th:text="${item}" th:selected="*{gender} == ${item}">
+            <option th:each="item:${T(com.techacademy.entity.Authentication.Role).values()}" th:value="${item}" th:text="${item}">
         </select>
-
+        <br>
         <input type="submit" value="投稿">
+        <br>
 
-    </form>
-    <a th:href="@{/employee/list}">この従業員情報を削除する</a>
+ 　　<a th:href="@{/employee/delete/{id}(id=${employee.id})}">この従業員情報を削除する</a>
+
     <a th:href="@{/employee/list}">一覧に戻る</a>
 </body>
 </html>

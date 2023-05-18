@@ -52,6 +52,9 @@ public class EmployeeController {
     /** Employee登録処理 */
     @PostMapping("/register")
     public String postRegister(Employee employee) {
+        //★★取得した社員の情報に、削除でないフラグを設定する★★
+        employee.setDelete_flag(0);//
+
         // Employee登録
         service.saveEmployee(employee);
         // 一覧画面にリダイレクト
@@ -75,5 +78,22 @@ public class EmployeeController {
         // 一覧画面にリダイレクト
         return "redirect:/employee/list";
     }
+//追加
+
+  //論理削除
+    @GetMapping("/delete/{id}")
+    public String deleteEmployee(@PathVariable(name = "id") int id, Model model) {
+        //★★削除対象のidを元に対象の社員を取得するserviceを呼び出す★★
+        Employee employee=service.getEmployee(id);//
+      //★★取得した社員の情報に、削除フラグを設定する★★
+        employee.setDelete_flag(1);//
+
+     // Employee登録
+        //★そして削除処理のサービスを呼び出すことで論理削除される
+      service.saveEmployee(employee);
+      // 一覧画面にリダイレクト
+      return "redirect:/employee/list";
+
+       }
 
 }

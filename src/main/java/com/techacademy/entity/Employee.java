@@ -1,5 +1,6 @@
 package com.techacademy.entity;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,12 +13,16 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.Where;
+
 import javax.persistence.CascadeType;
 import lombok.Data;
 
 @Data
 @Entity
 @Table(name = "employee")
+@Where(clause = "delete_flag = 0")
 public class Employee {
 
     /** 主キー。自動生成 */
@@ -35,12 +40,12 @@ public class Employee {
     private Integer delete_flag;
 
     /** 登録日時*/
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
+
+    private LocalDateTime createdAt;
 
     /** 更新日時*/
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedAt;
+
+    private LocalDateTime updatedAt;
 
     /** 紐付け*/
     @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
