@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.techacademy.entity.Authentication.Role;
 import com.techacademy.entity.Employee;
 import com.techacademy.service.EmployeeService;
 
@@ -41,7 +42,7 @@ public class EmployeeController {
             // employee/detail.htmlに画面遷移
             return "employee/detail";
             }
-    // ----- 追加:ここから -----
+   // ----- 追加:ここから -----
     /** Employee登録画面を表示 */
     @GetMapping("/register")
     public String getRegister(@ModelAttribute Employee employee) {
@@ -53,7 +54,7 @@ public class EmployeeController {
     @PostMapping("/register")
     public String postRegister(Employee employee) {
         //★★取得した社員の情報に、削除でないフラグを設定する★★
-        employee.setDelete_flag(0);//
+        employee.setDeleteFlag(0);//
 
         // Employee登録
         service.saveEmployee(employee);
@@ -73,8 +74,23 @@ public class EmployeeController {
     /** Controller更新処理 */
     @PostMapping("/update/{id}/")
     public String postEmployee(Employee employee) {
+        //★登録対象のidを元に対象の社員を取得するserviceを呼び出す★★
+        Employee employee2=service.getEmployee(id);//
+        //データに組み込むための各項目 名前,id,権限,パスワード
+        String name = employee.getName();
+        employee2.setName(name);
+
+        Role role = employee.getAuthentication().getRole();
+        employee2.getAuthentication().setRole(role);
+
+        String code = employee.getAuthentication().getCode();
+        employee2.getAuthentication().setCode(code);
+
+        String password = employee.getAuthentication().getPassword();
+        employee2.getAuthentication().setPassword(password);
+
         // Employee登録
-        service.saveEmployee(employee);
+        service.saveEmployee(employee2);
         // 一覧画面にリダイレクト
         return "redirect:/employee/list";
     }
@@ -86,7 +102,7 @@ public class EmployeeController {
         //★★削除対象のidを元に対象の社員を取得するserviceを呼び出す★★
         Employee employee=service.getEmployee(id);//
       //★★取得した社員の情報に、削除フラグを設定する★★
-        employee.setDelete_flag(1);//
+        employee.setDeleteFlag(1);//
 
      // Employee登録
         //★そして削除処理のサービスを呼び出すことで論理削除される

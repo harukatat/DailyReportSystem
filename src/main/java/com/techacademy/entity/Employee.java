@@ -36,8 +36,8 @@ public class Employee {
     private String name;
 
     /** 削除フラグ*/
-    @Column
-    private Integer delete_flag;
+    @Column(nullable = false)
+    private Integer deleteFlag;
 
     /** 登録日時*/
 
