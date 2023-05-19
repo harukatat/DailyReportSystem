@@ -7,12 +7,10 @@
 </head>
 <body>
     <h1>id:[[${employee.id}]]の従業員情報編集ページ</h1>
-    <h2>(パスワードは変更する場合のみ入力ください)</h2>
+    <h4>(パスワードは変更する場合のみ入力ください)</h4>
     <form method="post" th:action="@{/employee/update/{id}/(id=${employee.id})}" th:object="${employee}">
-        <label for="id">社員番号</label>
-        <br>
-        <input type="text" th:field="*{authentication.code}">>
-        <br>
+        <b>社員番号</b>
+        <br><tr><td th:text="*{authentication.code}"></td></tr><br>
         <label for="name">氏名</label>
         <br>
         <input type="text" th:field="*{name}">
@@ -31,8 +29,8 @@
         <input type="submit" value="投稿">
         <br>
 
- 　　<a th:href="@{/employee/delete/{id}(id=${employee.id})}">この従業員情報を削除する</a>
+ <a th:href="@{/employee/delete/{id}(id=${employee.id})}">この従業員情報を削除する</a>
 
-    <a th:href="@{/employee/list}">一覧に戻る</a>
+ <a th:href="@{/employee/list}">一覧に戻る</a>
 </body>
 </html>

@@ -73,7 +73,7 @@ public class EmployeeController {
 
     /** Controller更新処理 */
     @PostMapping("/update/{id}/")
-    public String postEmployee(Employee employee) {
+    public String postEmployee(@PathVariable(name = "id") int id, Employee employee) {
         //★登録対象のidを元に対象の社員を取得するserviceを呼び出す★★
         Employee employee2=service.getEmployee(id);//
         //データに組み込むための各項目 名前,id,権限,パスワード
@@ -83,8 +83,6 @@ public class EmployeeController {
         Role role = employee.getAuthentication().getRole();
         employee2.getAuthentication().setRole(role);
 
-        String code = employee.getAuthentication().getCode();
-        employee2.getAuthentication().setCode(code);
 
         String password = employee.getAuthentication().getPassword();
         employee2.getAuthentication().setPassword(password);
