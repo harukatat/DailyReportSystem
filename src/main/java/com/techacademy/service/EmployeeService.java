@@ -15,6 +15,7 @@ import java.util.Set;//削除用に追加
 
 @Service
 public class EmployeeService {
+    private static final String createdAt = null;
     private final EmployeeRepository employeeRepository;
 
     public EmployeeService(EmployeeRepository repository) {
@@ -31,10 +32,13 @@ public class EmployeeService {
     /** Employeeの登録を行なう 登録日時をセットする*/
     @Transactional
     public Employee saveEmployee(Employee employee) {
+        LocalDateTime createdAt = employee.getCreatedAt();
+        if (createdAt == null)
       //現在日時を取得
+        {LocalDateTime dateTime = LocalDateTime.now();
+        employee.setCreatedAt(dateTime);}  //
         LocalDateTime dateTime = LocalDateTime.now();
-        employee.setCreatedAt(dateTime);  // ★ここを変更
-        employee.setUpdatedAt(dateTime); // ★ここを変更
+        employee.setUpdatedAt(dateTime); //
 
         com.techacademy.entity.Authentication auth = employee.getAuthentication();
         auth.setEmployee(employee);

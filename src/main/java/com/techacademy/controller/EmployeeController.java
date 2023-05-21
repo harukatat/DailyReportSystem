@@ -83,9 +83,12 @@ public class EmployeeController {
         Role role = employee.getAuthentication().getRole();
         employee2.getAuthentication().setRole(role);
 
-
         String password = employee.getAuthentication().getPassword();
-        employee2.getAuthentication().setPassword(password);
+        if (password != null)
+        {employee2.getAuthentication().setPassword(password);
+        }
+
+
 
         // Employee登録
         service.saveEmployee(employee2);
