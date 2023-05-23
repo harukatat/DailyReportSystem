@@ -23,6 +23,7 @@
 
         </tr>
     </table>
+    <p th:text="'（全 ' + ${#lists.size(employeelist)} + ' 件）'"></p>
     <a th:href="@{/employee/register}">新規従業員の登録</a>
 </body>
 </html>

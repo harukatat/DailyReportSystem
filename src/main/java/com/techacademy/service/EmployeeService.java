@@ -8,6 +8,10 @@ import org.springframework.stereotype.Service;
 import com.techacademy.entity.Employee;
 import com.techacademy.repository.EmployeeRepository;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Set;//削除用に追加
@@ -46,7 +50,7 @@ public class EmployeeService {
     return employeeRepository.save(employee);
     }
 
-
+ // ----- 追加:情報総数把握のため -----
 
  // ----- 追加:従業員情報更新のため -----
  // Employee 1件を検索して返す

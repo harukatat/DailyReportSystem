@@ -1,5 +1,7 @@
 package com.techacademy.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +28,9 @@ public class EmployeeController {
     @GetMapping("/list")
     public String getList(Model model) {
         // 全件検索結果をModelに登録
-        model.addAttribute("employeelist", service.getEmployeeList());
+        List<Employee> employeeList = service.getEmployeeList();
+        model.addAttribute("employeelist", employeeList);
+        model.addAttribute("employeesize", employeeList.size());
         // employee/list.htmlに画面遷移
         return "employee/list";
     }
@@ -84,9 +88,10 @@ public class EmployeeController {
         employee2.getAuthentication().setRole(role);
 
         String password = employee.getAuthentication().getPassword();
-        if (password != null)
-        {employee2.getAuthentication().setPassword(password);
+        if (password != "") {
+            employee2.getAuthentication().setPassword(password);
         }
+
 
 
 
