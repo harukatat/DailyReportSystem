@@ -5,7 +5,9 @@
     <title>従業員情報　詳細ページ</title>
 </head>
 <body>
+    <a th:href="@{/logout}">ログアウト</a>
     <h1>id:[[${employee.id}]]の従業員情報　詳細ページ</h1>
+
 
         <table border="1" style="border-collapse: collapse">
         <tr><th>社員番号</th><td>[[${employee.authentication.code}]]</td></tr>

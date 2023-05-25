@@ -2,6 +2,8 @@ package com.techacademy.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.techacademy.entity.Authentication.Role;
 import com.techacademy.entity.Employee;
 import com.techacademy.service.EmployeeService;
+import com.techacademy.entity.Authentication;
 
 @Controller
 @RequestMapping("employee")
@@ -55,16 +58,25 @@ public class EmployeeController {
     }
 
     /** Employee登録処理 */
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @PostMapping("/register")
+
     public String postRegister(Employee employee) {
         //★★取得した社員の情報に、削除でないフラグを設定する★★
         employee.setDeleteFlag(0);//
+
+        String password = employee.getAuthentication().getPassword();
+        employee.getAuthentication().setPassword(passwordEncoder.encode(password));
 
         // Employee登録
         service.saveEmployee(employee);
         // 一覧画面にリダイレクト
         return "redirect:/employee/list";
     }
+
+
     // ----- 追加:ここまで -----
     //**　更新画面を表示*//
     @GetMapping("/update/{id}")
@@ -76,7 +88,10 @@ public class EmployeeController {
     }
 
     /** Controller更新処理 */
+
     @PostMapping("/update/{id}/")
+
+
     public String postEmployee(@PathVariable(name = "id") int id, Employee employee) {
         //★登録対象のidを元に対象の社員を取得するserviceを呼び出す★★
         Employee employee2=service.getEmployee(id);//
@@ -89,10 +104,10 @@ public class EmployeeController {
 
         String password = employee.getAuthentication().getPassword();
         if (password != "") {
-            employee2.getAuthentication().setPassword(password);
+
+        employee2.getAuthentication().setPassword(passwordEncoder.encode(password));
+
         }
-
-
 
 
         // Employee登録

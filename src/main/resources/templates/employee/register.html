@@ -6,7 +6,9 @@
     <link rel="stylesheet" th:href="@{/css/employee/register.css}">
 </head>
 <body>
+    <a th:href="@{/logout}">ログアウト</a>
     <h1>従業員　新規登録ページ</h1>
+
     <form method="post" th:action="@{/employee/register}" th:object="${employee}">
         <label for="employee.authentication.code">社員番号</label>
         <br>

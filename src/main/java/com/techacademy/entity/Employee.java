@@ -50,4 +50,8 @@ public class Employee {
     /** 紐付け*/
     @OneToOne(mappedBy = "employee", cascade = CascadeType.ALL)
     private Authentication authentication;
+
+
+
+
 }
