@@ -102,10 +102,10 @@ public class EmployeeController {
         Role role = employee.getAuthentication().getRole();
         employee2.getAuthentication().setRole(role);
 
-        String password = employee.getAuthentication().getPassword();
+            String password = employee.getAuthentication().getPassword();
         if (password != "") {
 
-        employee2.getAuthentication().setPassword(passwordEncoder.encode(password));
+            employee2.getAuthentication().setPassword(passwordEncoder.encode(password));
 
         }
 
