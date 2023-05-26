@@ -6,7 +6,9 @@
     <link rel="stylesheet" th:href="@{/css/employee/list.css}">
 </head>
 <body>
-    <a th:href="@{/logout}">ログアウト</a>
+    <form method="post" th:action="@{/logout}">
+        <input type="submit" value="ログアウト">
+    </form><br>
     <h1>従業員情報管理システム</h1>
     <h2>従業員一覧(全件)</h2>
 

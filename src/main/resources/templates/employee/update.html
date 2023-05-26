@@ -6,7 +6,9 @@
     <link rel="stylesheet" th:href="@{/css/employee/update.css}">
 </head>
 <body>
-    <a th:href="@{/logout}">ログアウト</a>
+    <form method="post" th:action="@{/logout}">
+        <input type="submit" value="ログアウト">
+    </form><br>
     <h1>id:[[${employee.id}]]の従業員情報編集ページ</h1>
     <h4>(パスワードは変更する場合のみ入力ください)</h4>
     <form method="post" th:action="@{/employee/update/{id}/(id=${employee.id})}" th:object="${employee}">

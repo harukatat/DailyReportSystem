@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class LogoutController {
 
     /** ログアウト処理を行なう */
-    @GetMapping("/logout")
+    @PostMapping("/logout")
     public String postLogout() {
         // ログイン画面にリダイレクト
         return "redirect:/login";
