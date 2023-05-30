@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>日報管理システム</title>
+    <link rel="stylesheet" th:href="@{/css/employee/list.css}">
 </head>
 <body>
     <h1>日報管理システム</h1>
@@ -21,7 +22,7 @@
             <th>操作</th>
         </tr>
 
-        <tr th:each=": ${reportlist}">
+        <tr th:each="report: ${reportlist}">
 
             <td th:text="${report.employee.name}"></td>
             <td th:text="${report.reportDate}"></td>
