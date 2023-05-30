@@ -43,5 +43,4 @@ public class Authentication {
     @JoinColumn(name="employee_id", referencedColumnName="id")
     private Employee employee;
 
-
 }

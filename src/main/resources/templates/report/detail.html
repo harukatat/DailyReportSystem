@@ -1,0 +1,26 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>日報　詳細ページ</title>
+</head>
+<body>
+    <form method="post" th:action="@{/logout}">
+        <input type="submit" value="ログアウト">
+    </form><br>
+    <h1>日報　詳細ページ</h1>
+
+
+        <table border="1" style="border-collapse: collapse">
+        <tr><th>氏名</th><td>[[${report.employee.name}]]</td></tr>
+        <tr><th>日付</th><td>[[${report.reportDate}]]</td></tr>
+        <tr><th>タイトル</th><td>[[${report.title}]]</td></tr>
+        <tr><th>内容</th><td>[[${report.content}]]</td></tr>
+        <tr><th>登録日時</th><td>[[${report.createdAt}]]</td></tr>
+        <tr><th>更新日時</th><td>[[${report.updatedAt}]]</td></tr>
+
+        </table>
+        <a th:href="@{/report/update/{id}/(id=${report.id})}">この従業員情報を編集する</a><br>
+        <a th:href="@{/report/list}">一覧に戻る</a>
+</body>
+</html>
+
