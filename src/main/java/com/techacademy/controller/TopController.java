@@ -20,6 +20,8 @@ import com.techacademy.service.UserDetail;
 public class TopController {
     private final ReportService service;
 
+
+
     public TopController(ReportService service) {
         this.service = service;
     }
@@ -29,7 +31,8 @@ public class TopController {
 
         public String showTop(@AuthenticationPrincipal UserDetail userDetail, Model model) {
             // reportにid情報を渡す
-        List<Report> reportList = service.getReportSingleuser();
+        Employee employee = userDetail.getEmployee();
+        List<Report> reportList = service.getReportSingleuser(employee);
         model.addAttribute("reportlist", reportList);
         model.addAttribute("reportsize", reportList.size());
         // top.htmlに画面遷移
